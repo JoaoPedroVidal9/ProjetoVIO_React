@@ -14,7 +14,7 @@ function App() {
           <Route path="/cadastro" element={<Cadastro/>} />
           <Route path="/users" element={
             <ProtectedRoute>
-              <ListUsers />
+                <ListUsers />
             </ProtectedRoute>
           } />
           <Route path="/proc" element={<ProtectedRoute />} />
