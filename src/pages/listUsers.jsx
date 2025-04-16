@@ -10,14 +10,32 @@ import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import Paper from '@mui/material/Paper';
 import api from '../axios/axios'
-import { Button } from '@mui/material';
-import { Link, useNavigate } from 'react-router-dom';
+import { Button, IconButton, Alert, Snackbar } from '@mui/material';
+import  DeleteOutlineIcon from "@mui/icons-material/DeleteOutline"
+// import DeleteIcon from "@mui/icons-material/Delete"
+import { useNavigate } from 'react-router-dom';
 
 function listUsers() {
   const [users,setUsers] = useState([]);
-  const navigate = useNavigate();
+  const [alert, setAlert] = useState({
+    // Visibilidade (false - oculto/true - visível)
+    open:false,
+    // Nível do alerta (Success, Error, Warning, etc)
+    severity:"",
+    // Mensagem exibida
+    message:"",
+  });
 
-  
+  // Função para exibir o alerta
+  const showAlert = (sev,message) =>{
+    setAlert({open:true, severity:sev, message});
+  }
+
+  const hideAlert = ()=>{
+    setAlert({...alert,open:false });
+  }
+
+  const navigate = useNavigate();
 
   async function getUsers(){
     // Chamada da Api
@@ -31,12 +49,29 @@ function listUsers() {
     )
   }
 
+  async function deleteUser(id){
+    // Chamada da Api    
+    try{
+    await api.deleteUser(id);
+    await getUsers();
+    showAlert('success', "Vamooossssss");
+  }catch(error){
+    console.log("Erro ao deletar usuario", error);
+    showAlert('error', error.response.data.error)
+  }
+  }
+
   const listUsers = users.map((user)=>{
     return(
       <TableRow key={user.id_usuario}>
         <TableCell align="center">{user.name}</TableCell>
         <TableCell align="center">{user.email}</TableCell>
         <TableCell align="center">{user.cpf}</TableCell>
+        <TableCell align="center">
+          <IconButton onClick={() => deleteUser(user.id_usuario)}>
+            <DeleteOutlineIcon color="error"/>
+          </IconButton>
+          </TableCell>
       </TableRow>
     )
   })
@@ -56,12 +91,18 @@ function listUsers() {
 
   return (
     <div>
+      <Snackbar open={alert.open} autoHideDuration={1500} onClose={hideAlert} anchorOrigin={{vertical:'top', horizontal:'center'}} 
+      >
+        <Alert onClose={hideAlert} severity={alert.severity}>
+          {alert.message}
+        </Alert>
+      </Snackbar>
       {users.lenght === 0 ?(<h1>Carregando Usuários</h1>):
     <div>
         <h5>Lista de usuários</h5>
         <TableContainer component={Paper} style={{margin:"2px"}}>
           <Table size="small">
-            <TableHead style={{backgroundColor: "brown", borderStyle:"solid"}}>
+            <TableHead style={{backgroundColor: "#Bece18", borderStyle:"solid"}}>
               <TableRow>
                 <TableCell align="center">
                   Nome
@@ -71,6 +112,9 @@ function listUsers() {
                 </TableCell>
                 <TableCell align="center">
                   CPF
+                </TableCell>
+                <TableCell align="center">
+                  Ações
                 </TableCell>
               </TableRow>
             </TableHead>
