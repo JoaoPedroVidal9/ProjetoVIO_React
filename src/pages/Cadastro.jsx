@@ -3,7 +3,7 @@ function Cadastro() {
   return (
     <div>
       <h1>CADASTRO</h1>
-      <Link to="/users"> Ir para lista de usuários </Link>
+      <Link to="/events"> Ir para lista de usuários </Link>
     </div>
   );
 }

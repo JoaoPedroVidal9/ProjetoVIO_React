@@ -33,7 +33,7 @@ function Login() {
       (response)=>{
         alert(response.data.message)
         localStorage.setItem('authenticated',true);
-        navigate('users/')
+        navigate('events/')
       },
     (error)=>{
       console.log(error)
