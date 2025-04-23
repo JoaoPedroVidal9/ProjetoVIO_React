@@ -13,7 +13,7 @@ const Header = () => {
       }
 
     return(
-        <AppBar sx={{backgroundColor:"#BECE31"}}>
+        <AppBar sx={{backgroundColor:"#ff0064"}}>
             <Toolbar sx={{display:'flex', justifyContent:"flex-end"}}>
                 <IconButton color="inherit" onClick={logout}>
                     <AccountCircleIcon fontSize="large" />

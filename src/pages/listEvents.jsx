@@ -26,6 +26,7 @@ function listEvents() {
     message:"",
   });
 
+
   // Função para exibir o alerta
   const showAlert = (sev,message) =>{
     setAlert({open:true, severity:sev, message});
