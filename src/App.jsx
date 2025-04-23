@@ -12,17 +12,24 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/cadastro" element={<Cadastro/>} />
-          <Route path="/users" element={
-            <ProtectedRoute>
+          <Route path="/cadastro" element={<Cadastro />} />
+          <Route
+            path="/events"
+            element={
+              <ProtectedRoute>
+                <ListEvents />
+              </ProtectedRoute>
+                
+            }
+          />
+          <Route
+            path="/users"
+            element={
+              <ProtectedRoute>
                 <ListUsers />
-            </ProtectedRoute>
-          } />
-          <Route path="/events" element={
-            <ProtectedRoute>
-              <ListEvents />
-            </ProtectedRoute>
-          } />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/proc" element={<ProtectedRoute />} />
         </Routes>
       </BrowserRouter>

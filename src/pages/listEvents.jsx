@@ -61,6 +61,7 @@ function listEvents() {
   }
   }
 
+
   const listEvents = events.map((event)=>{
     return(
       <TableRow key={event.id_evento}>
@@ -119,7 +120,7 @@ function listEvents() {
                   Local
                 </TableCell>
                 <TableCell align="center">
-                  Organizador
+                  Id Organizador
                 </TableCell>
                 <TableCell align="center">
                   Ações
@@ -133,13 +134,6 @@ function listEvents() {
       fullWidth
       variant='contained'
       onClick={logout}
-      >
-        SAIR
-      </Button>
-      <Button 
-      fullWidth
-      variant='contained'
-      onClick={ navigate("/users")}
       >
         SAIR
       </Button>
