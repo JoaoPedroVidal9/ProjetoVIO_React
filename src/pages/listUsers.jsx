@@ -54,7 +54,7 @@ function listUsers() {
     try{
     await api.deleteUser(id);
     await getUsers();
-    showAlert('success', "Vamooossssss");
+    showAlert('success', "Usuário deletado com sucesso");
   }catch(error){
     console.log("Erro ao deletar usuario", error);
     showAlert('error', error.response.data.error)

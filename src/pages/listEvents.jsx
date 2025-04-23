@@ -54,7 +54,7 @@ function listEvents() {
     try{
     await api.deleteEvent(id);
     await getEvents();
-    showAlert('success', "Vamooossssss");
+    showAlert('success', "Evento deletado com sucesso");
   }catch(error){
     console.log("Erro ao deletar Evento", error);
     showAlert('error', error.response.data.error)
