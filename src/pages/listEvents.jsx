@@ -109,6 +109,7 @@ function listEvents() {
 
   return (
     <div>
+      {events==[]?(<Text>Carregando</Text>):
       <Snackbar
         open={alert.open}
         autoHideDuration={1500}
@@ -118,7 +119,7 @@ function listEvents() {
         <Alert onClose={hideAlert} severity={alert.severity}>
           {alert.message}
         </Alert>
-      </Snackbar>
+      </Snackbar>}
       {events.lenght === 0 ? (
         <h1>Carregando Eventos</h1>
       ) : (
