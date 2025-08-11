@@ -72,6 +72,13 @@ function listEvents() {
         <TableCell align="center">{event.local}</TableCell>
         <TableCell align="center">{event.fk_id_organizador}</TableCell>
         <TableCell align="center">
+          <img src={`http://localhost:5000/api/v1/evento/img/${event.id_evento}`}
+          alt="Imagem do evento"
+          style={{width:"80px", height:"80px", objectFit:"cover"}}
+          />
+        </TableCell>
+        {/* <TableCell align="center">{event.tipoImagem}</TableCell> */}
+        <TableCell align="center">
           <IconButton onClick={() => deleteEvent(event.id_evento)}>
             <DeleteOutlineIcon color="error" />
           </IconButton>
@@ -136,6 +143,8 @@ function listEvents() {
                   <TableCell align="center">Data e Hora</TableCell>
                   <TableCell align="center">Local</TableCell>
                   <TableCell align="center">Id Organizador</TableCell>
+                  <TableCell align="center">Imagem</TableCell>
+                  <TableCell align="center">Tipo Imagem</TableCell>
                   <TableCell align="center">Ações</TableCell>
                   <TableCell align="center">Criar ingresso</TableCell>
                 </TableRow>
