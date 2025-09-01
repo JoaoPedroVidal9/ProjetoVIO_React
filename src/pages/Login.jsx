@@ -142,7 +142,7 @@ function Login() {
           </Button>
           <Button
             component={Link}
-            to="/cadastro"
+            to="/dashboard"
             fullWidth
             variant="contained"
             sx={{
@@ -151,7 +151,7 @@ function Login() {
               backgroundColor: "green",
             }}
           >
-            <Link to="/createev">Cadastro de Eventos</Link>
+            <Link to="/dashboard">Dashboard</Link>
           </Button>
         </Box>
       </Box>

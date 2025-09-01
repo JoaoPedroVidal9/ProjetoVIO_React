@@ -22,14 +22,14 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if(error.response){
-      if(error.response.status === 401 && error.response.data.auth === false){
+    if (error.response) {
+      if (error.response.status === 401 && error.response.data.auth === false) {
         localStorage.setItem("refresh_token", true);
         localStorage.removeItem("token");
         localStorage.removeItem("authenticated");
         window.location.href = "/";
       }
-      if(error.response.status === 403 && error.response.data.auth === false){
+      if (error.response.status === 403 && error.response.data.auth === false) {
         localStorage.setItem("refresh_token", true);
         localStorage.removeItem("token");
         localStorage.removeItem("authenticated");
@@ -38,7 +38,7 @@ api.interceptors.response.use(
     }
     return Promise.reject(error);
   }
-)
+);
 
 const sheets = {
   getUsers: () => api.get("user"),
@@ -48,17 +48,17 @@ const sheets = {
   deleteEvent: (id) => api.delete("evento/" + id),
   createIngresso: (ingresso) => api.post("ingresso/", ingresso),
 
-  createEvento: (form,imagem) => {
+  createEvento: (form, imagem) => {
     const data = new FormData();
     for (let key in form) data.append(key, form[key]);
-    if(imagem) data.append("imagem", imagem);
+    if (imagem) data.append("imagem", imagem);
     console.log(data);
     return api.post("/evento", data, {
-      headers:{
-        "Content-Type":"multpart/form-data",
-        Accept:"application/json",
-    }
-  });
+      headers: {
+        "Content-Type": "multpart/form-data",
+        Accept: "application/json",
+      },
+    });
   },
 };
 
